@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Contactos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-10">
+            <h2 class="text-primary text-left">Lista de Contactos</h2>
+        </div>
+        <div class="col-2">
+            <a a asp-action="Create" class="btn btn-outline-primary form-control" style="font-size:24px">
+                <i class="bi bi-clipboard-plus" style="font-size: 24px"> Crear</i>
+            </a>
+        </div>
+    </div>
+    <hr />
+    <table id="tbl" class="table table-hover table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr class="text-center bg-success">
+                <th class="text-center">Id</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Empresa</th>
+                <th class="text-center">Imágen</th>
+                <th class="text-center">Correo</th>
+                <th class="text-center">Nacimiento</th>
+                <th class="text-center">Dirección</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/contactos.js"></script>
+}

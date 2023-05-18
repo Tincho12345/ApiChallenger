@@ -1,0 +1,98 @@
+﻿@model WebContactos.Modelos.Contacto
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-primary text-center mt-3">Nuevo Contacto</h2>
+
+<hr />
+
+<div class="col">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row bg-light border p-4" style="border-radius:5%">
+            <div class="col-6">
+                <div class="form-group mb-3">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre del Artículo" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Empresa" class="control-label"></label>
+                    <input asp-for="Empresa" class="form-control" placeholder="Ingresa el nombre de la Empresa" />
+                    <span asp-validation-for="Empresa" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Correo Electrónico" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Nacimiento" class="control-label"></label>
+                    <input asp-for="Nacimiento" class="form-control" />
+                    <span asp-validation-for="Nacimiento" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="WorkPersonal" class="control-label"></label>
+                    <input asp-for="WorkPersonal" class="form-control" />
+                    <span asp-validation-for="WorkPersonal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <!--Selector de Imágen-->
+                <div class="form-group">
+                    <div class="container">
+                        <img src="@Model.UrlImagen" height="300" w-100% class="img-fluid"
+                             style="max-height:450px; border-radius:10px; border:1px solid #4c37c1a6" id="img_Articulo">
+                    </div>
+                    <input id="subidaArchivo" type="file" name="Articulo.UrlImagen" class="form-control mt-4" onchange="mostrarImagen(this)" />
+
+                </div>
+                <hr />
+                <div class="form-group row my-3">
+                    <div class="col">
+                        <partial name="_VistaEditarVolver" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+        //Carga Imagen de los productos
+        function mostrarImagen(input) {
+            if (input.files) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#img_Articulo").attr("src", e.target.result)
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
